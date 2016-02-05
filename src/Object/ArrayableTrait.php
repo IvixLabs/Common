@@ -7,7 +7,7 @@ trait ArrayableTrait
      * @param $array
      * @return void
      */
-    public function fromArray($array)
+    public function fromArray(array $array)
     {
         foreach ($array as $key => $val) {
             if ($this->$key instanceof ArrayableInterface) {
