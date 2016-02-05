@@ -1,10 +1,12 @@
 <?php
-namespace IvixLabs\Common;
-
+namespace IvixLabs\Common\Object;
 
 trait ArrayableTrait
 {
-
+    /**
+     * @param $array
+     * @return void
+     */
     public function fromArray($array)
     {
         foreach ($array as $key => $val) {
@@ -16,6 +18,9 @@ trait ArrayableTrait
         }
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         $array = [];
@@ -28,5 +33,17 @@ trait ArrayableTrait
         }
 
         return $array;
+    }
+
+    /**
+     * @param array $array
+     * @return static
+     */
+    public static function createFromArray(array $array)
+    {
+        $reflection = new \ReflectionClass(static::class);
+        $object = $reflection->newInstanceWithoutConstructor();
+        $object->fromArray($array);
+        return $object;
     }
 }
